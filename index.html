@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth RM Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .card {
+            background: #fff;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .card h2 {
+            margin-top: 0;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .btn {
+            display: inline-block;
+            color: #fff;
+            background-color: #0779e4;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #005bb5;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 50vh;
+            width: 80vw;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+            table, th, td {
+                font-size: 14px;
+            }
+            .btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <section id="main" class="container">
+        <article id="main-col">
+            <div class="card">
+                <h2>Portfolio Performance</h2>
+                <div class="chart-container">
+                    <canvas id="portfolioPerformanceChart"></canvas>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Valuation (MYR)</th>
+                                <th>Gain/Loss (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Unit Trust A</td>
+                                <td>100,000</td>
+                                <td>5%</td>
+                            </tr>
+                            <tr>
+                                <td>Unit Trust B</td>
+                                <td>150,000</td>
+                                <td>8%</td>
+                            </tr>
+                            <tr>
+                                <td>Bond C</td>
+                                <td>200,000</td>
+                                <td>3%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Product Comparison</h2>
+                <div class="chart-container">
+                    <canvas id="productComparisonChart"></canvas>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>1-Year Performance</th>
+                                <th>3-Year Performance</th>
+                                <th>5-Year Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Unit Trust A</td>
+                                <td>5%</td>
+                                <td>15%</td>
+                                <td>25%</td>
+                            </tr>
+                            <tr>
+                                <td>Unit Trust B</td>
+                                <td>8%</td>
+                                <td>20%</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <td>Bond C</td>
+                                <td>3%</td>
+                                <td>10%</td>
+                                <td>15%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Portfolio Comparison</h2>
+                <div class="chart-container">
+                    <canvas id="portfolioComparisonChart"></canvas>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Portfolio</th>
+                                <th>Asset Allocation</th>
+                                <th>Risk Profile</th>
+                                <th>Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Portfolio 1</td>
+                                <td>60% Equity, 40% Bond</td>
+                                <td>Moderate</td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td>Portfolio 2</td>
+                                <td>40% Equity, 60% Bond</td>
+                                <td>Conservative</td>
+                                <td>8%</td>
+                            </tr>
+                            <tr>
+                                <td>Portfolio 3</td>
+                                <td>80% Equity, 20% Bond</td>
+                                <td>Aggressive</td>
+                                <td>12%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </section>
+    <script>
+        // Portfolio Performance Chart
+        var ctx1 = document.getElementById('portfolioPerformanceChart').getContext('2d');
+        var portfolioPerformanceChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Unit Trust A', 'Unit Trust B', 'Bond C'],
+                datasets: [{
+                    label: 'Valuation (MYR)',
+                    data: [100000, 150000, 200000],
+                    backgroundColor: ['#0779e4', '#4CAF50', '#FFC107']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Product Comparison Chart
+        var ctx2 = document.getElementById('productComparisonChart').getContext('2d');
+        var productComparisonChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['1-Year', '3-Year', '5-Year'],
+                datasets: [
+                    {
+                        label: 'Unit Trust A',
+                        data: [5, 15, 25],
+                        borderColor: '#0779e4',
+                        fill: false
+                    },
+                    {
+                        label: 'Unit Trust B',
+                        data: [8, 20, 30],
+                        borderColor: '#4CAF50',
+                        fill: false
+                    },
+                    {
+                        label: 'Bond C',
+                        data: [3, 10, 15],
+                        borderColor: '#FFC107',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Portfolio Comparison Chart
+        var ctx3 = document.getElementById('portfolioComparisonChart').getContext('2d');
+        var portfolioComparisonChart = new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: ['Portfolio 1', 'Portfolio 2', 'Portfolio 3'],
+                datasets: [{
+                    data: [10, 8, 12],
+                    backgroundColor: ['#0779e4', '#4CAF50', '#FFC107']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
