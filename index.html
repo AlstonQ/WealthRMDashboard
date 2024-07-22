@@ -12,16 +12,20 @@
             background-color: #f4f4f4;
         }
         .container {
-            width: 90%;
+            width: 100%;
             margin: auto;
-            overflow: hidden;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Add space between cards */
         }
         .card {
             background: #fff;
             border-radius: 5px;
-            margin-bottom: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            flex: 1 1 calc(33.333% - 20px); /* Adjust to ensure fit */
+            box-sizing: border-box;
         }
         .card h2 {
             margin-top: 0;
@@ -58,20 +62,12 @@
         }
         .chart-container {
             position: relative;
-            margin: auto;
-            height: 50vh;
-            width: 80vw;
+            height: 30vh; /* Adjusted height */
+            width: 100%;
         }
         @media (max-width: 768px) {
-            .container {
-                width: 100%;
-            }
-            table, th, td {
-                font-size: 14px;
-            }
-            .btn {
-                padding: 8px 16px;
-                font-size: 14px;
+            .card {
+                flex: 1 1 100%; /* Stack cards vertically on small screens */
             }
         }
     </style>
@@ -79,120 +75,118 @@
 </head>
 <body>
     <section id="main" class="container">
-        <article id="main-col">
-            <div class="card">
-                <h2>Portfolio Performance</h2>
-                <div class="chart-container">
-                    <canvas id="portfolioPerformanceChart"></canvas>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Valuation (MYR)</th>
-                                <th>Gain/Loss (%)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Unit Trust A</td>
-                                <td>100,000</td>
-                                <td>5%</td>
-                            </tr>
-                            <tr>
-                                <td>Unit Trust B</td>
-                                <td>150,000</td>
-                                <td>8%</td>
-                            </tr>
-                            <tr>
-                                <td>Bond C</td>
-                                <td>200,000</td>
-                                <td>3%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="card">
+            <h2>Portfolio Performance</h2>
+            <div class="chart-container">
+                <canvas id="portfolioPerformanceChart"></canvas>
             </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Valuation (MYR)</th>
+                            <th>Gain/Loss (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unit Trust A</td>
+                            <td>100,000</td>
+                            <td>5%</td>
+                        </tr>
+                        <tr>
+                            <td>Unit Trust B</td>
+                            <td>150,000</td>
+                            <td>8%</td>
+                        </tr>
+                        <tr>
+                            <td>Bond C</td>
+                            <td>200,000</td>
+                            <td>3%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            <div class="card">
-                <h2>Product Comparison</h2>
-                <div class="chart-container">
-                    <canvas id="productComparisonChart"></canvas>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>1-Year Performance</th>
-                                <th>3-Year Performance</th>
-                                <th>5-Year Performance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Unit Trust A</td>
-                                <td>5%</td>
-                                <td>15%</td>
-                                <td>25%</td>
-                            </tr>
-                            <tr>
-                                <td>Unit Trust B</td>
-                                <td>8%</td>
-                                <td>20%</td>
-                                <td>30%</td>
-                            </tr>
-                            <tr>
-                                <td>Bond C</td>
-                                <td>3%</td>
-                                <td>10%</td>
-                                <td>15%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="card">
+            <h2>Product Comparison</h2>
+            <div class="chart-container">
+                <canvas id="productComparisonChart"></canvas>
             </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>1-Year Performance</th>
+                            <th>3-Year Performance</th>
+                            <th>5-Year Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unit Trust A</td>
+                            <td>5%</td>
+                            <td>15%</td>
+                            <td>25%</td>
+                        </tr>
+                        <tr>
+                            <td>Unit Trust B</td>
+                            <td>8%</td>
+                            <td>20%</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>Bond C</td>
+                            <td>3%</td>
+                            <td>10%</td>
+                            <td>15%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-            <div class="card">
-                <h2>Portfolio Comparison</h2>
-                <div class="chart-container">
-                    <canvas id="portfolioComparisonChart"></canvas>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Portfolio</th>
-                                <th>Asset Allocation</th>
-                                <th>Risk Profile</th>
-                                <th>Performance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Portfolio 1</td>
-                                <td>60% Equity, 40% Bond</td>
-                                <td>Moderate</td>
-                                <td>10%</td>
-                            </tr>
-                            <tr>
-                                <td>Portfolio 2</td>
-                                <td>40% Equity, 60% Bond</td>
-                                <td>Conservative</td>
-                                <td>8%</td>
-                            </tr>
-                            <tr>
-                                <td>Portfolio 3</td>
-                                <td>80% Equity, 20% Bond</td>
-                                <td>Aggressive</td>
-                                <td>12%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="card">
+            <h2>Portfolio Comparison</h2>
+            <div class="chart-container">
+                <canvas id="portfolioComparisonChart"></canvas>
             </div>
-        </article>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Portfolio</th>
+                            <th>Asset Allocation</th>
+                            <th>Risk Profile</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Portfolio 1</td>
+                            <td>60% Equity, 40% Bond</td>
+                            <td>Moderate</td>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio 2</td>
+                            <td>40% Equity, 60% Bond</td>
+                            <td>Conservative</td>
+                            <td>8%</td>
+                        </tr>
+                        <tr>
+                            <td>Portfolio 3</td>
+                            <td>80% Equity, 20% Bond</td>
+                            <td>Aggressive</td>
+                            <td>12%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </section>
     <script>
         // Portfolio Performance Chart
