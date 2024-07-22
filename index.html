@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wealth RM Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -23,12 +24,16 @@
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 10px;
             flex: 1 1 calc(33.333% - 20px); /* Adjust to ensure fit */
             box-sizing: border-box;
+            max-width: calc(33.333% - 20px); /* Ensure proper width calculation */
+            display: flex;
+            flex-direction: column;
         }
         .card h2 {
             margin-top: 0;
+            font-weight: 600;
         }
         .table-container {
             overflow-x: auto;
@@ -36,7 +41,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -44,25 +49,14 @@
         th, td {
             padding: 5px;
             text-align: left;
+            font-size: 10px; /* Adjust font size for slimmer table */
         }
         th {
             background-color: #f4f4f4;
         }
-        .btn {
-            display: inline-block;
-            color: #fff;
-            background-color: #0779e4;
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .btn:hover {
-            background-color: #005bb5;
-        }
         .chart-container {
             position: relative;
-            height: 30vh; /* Adjusted height */
+            height: 200px; /* Adjusted height */
             width: 100%;
         }
         @media (max-width: 768px) {
